@@ -108,7 +108,10 @@ public class EpidemicController {
 
     public static void infectRegion(Race race) {
         if (!race.getRegionTo().isClosedAirports())
-            race.getRegionTo().setInfected(race.getRegionTo().getInfected() + virus.airPlaneInfect);
+            race.getRegionFrom().setPopulation(race.getRegionFrom().getPopulation()-virus.airPlaneInfect);
+            race.getRegionFrom().setInfected(race.getRegionFrom().getInfected() - virus.airPlaneInfect);
+            race.getRegionTo().setPopulation(race.getRegionTo().getPopulation()+virus.airPlaneInfect);
+        race.getRegionTo().setInfected(race.getRegionTo().getInfected() + virus.airPlaneInfect);
 
     }
 }

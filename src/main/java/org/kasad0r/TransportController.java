@@ -72,20 +72,18 @@ public class TransportController {
         for (Region startRegion : worldRegionsList) {
             if (startRegion.getPopulation() != 0) {
                 for (Point airport : startRegion.getAirportsCoords()) {
-                    if (chanceStartRaceAir * 100 > random.nextInt(10)) {
-                        Region regionEnd =
-                                worldRegionsList
-                                        .get(random.nextInt(worldRegionsList.size()));
-                        Point endRace = regionEnd.getAirportsCoords()
-                                .get(random.nextInt(regionEnd.getAirportsCoords().size()));
-                        Race race = new Race(airport, endRace, RaceType.AIR);
-                        race.setRegionFrom(startRegion);
-                        race.setRegionTo(regionEnd);
-                        if (EpidemicController.infectPlane(startRegion)) {
-                            race.infect();
-                        }
-                        result.add(race);
+                    Region regionEnd =
+                            worldRegionsList
+                                    .get(random.nextInt(worldRegionsList.size()));
+                    Point endRace = regionEnd.getAirportsCoords()
+                            .get(random.nextInt(regionEnd.getAirportsCoords().size()));
+                    Race race = new Race(airport, endRace, RaceType.AIR);
+                    race.setRegionFrom(startRegion);
+                    race.setRegionTo(regionEnd);
+                    if (EpidemicController.infectPlane(startRegion)) {
+                        race.infect();
                     }
+                    result.add(race);
                 }
             }
         }
@@ -94,16 +92,12 @@ public class TransportController {
 
     public List<ShipRace> generateShipRaces() {
         List<ShipRace> result = new ArrayList<>();
-        var random = new Random();
         List<ShipRace> shipRaces = ShipRaceWayMap.shipRaces;
         int count = 1;
         int size = shipRaces.size();
         while (count <= size) {
             ShipRace shipRace = shipRaces.get(count - 1);
 
-         /*   if (random.nextInt(10) > 5) {
-                Collections.reverse(shipRace.way);
-            }*/
             result.add(shipRace);
             count++;
 
@@ -175,9 +169,7 @@ public class TransportController {
         } else {
 
             if (race.infected) {
-                if (race.getRegionTo().getInfected() == 0) {
                     infectRegion(race);
-                }
             }
             Game.races.remove(race);
             ArrayList<Race> races = generatePlanesRaces();

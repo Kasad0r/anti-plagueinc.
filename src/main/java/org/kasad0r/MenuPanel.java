@@ -41,7 +41,6 @@ public class MenuPanel extends JPanel {
         list2.setFont(new Font("TimesRoman", Font.BOLD, 20));
         add(jScrollPane);
         setLayout(null);
-        //  add(scoreLabel);
         buttonEasy.setFont(new Font("TimesRoman", Font.BOLD, 20));
         buttonEasy.setBounds(Starter.WIDTH / 2 - 386, Starter.HEIGHT / 2 - 275, 250, 100);
         buttonEasy.setForeground(Color.WHITE);
@@ -73,48 +72,31 @@ public class MenuPanel extends JPanel {
         buttonStart.setContentAreaFilled(false);
         buttonStart.setForeground(Color.WHITE);
         buttonStart.setOpaque(true);
-        buttonStart.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                buttonEasy.setVisible(true);
-                buttonMedium.setVisible(true);
-                buttonHard.setVisible(true);
-                repaint();
-            }
+        buttonStart.addActionListener(actionEvent -> {
+            buttonEasy.setVisible(true);
+            buttonMedium.setVisible(true);
+            buttonHard.setVisible(true);
+            repaint();
         });
-        buttonEasy.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                Game.virus = VirusFactory.create(Difficulty.EASY);
-                Application.starter.loadGame();
-                setVisible(false);
-                Game.selectedDifficulty = Difficulty.EASY;
-            }
+        buttonEasy.addActionListener(actionEvent -> {
+            Game.virus = VirusFactory.create(Difficulty.EASY);
+            Application.starter.loadGame();
+            setVisible(false);
+            Game.selectedDifficulty = Difficulty.EASY;
         });
-        buttonMedium.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                Game.virus = VirusFactory.create(Difficulty.MEDIUM);
-                Application.starter.loadGame();
-                setVisible(false);
-                Game.selectedDifficulty = Difficulty.MEDIUM;
-            }
+        buttonMedium.addActionListener(actionEvent -> {
+            Game.virus = VirusFactory.create(Difficulty.MEDIUM);
+            Application.starter.loadGame();
+            setVisible(false);
+            Game.selectedDifficulty = Difficulty.MEDIUM;
         });
-        buttonHard.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                Game.virus = VirusFactory.create(Difficulty.HARD);
-                Application.starter.loadGame();
-                setVisible(false);
-                Game.selectedDifficulty = Difficulty.HARD;
-            }
+        buttonHard.addActionListener(actionEvent -> {
+            Game.virus = VirusFactory.create(Difficulty.HARD);
+            Application.starter.loadGame();
+            setVisible(false);
+            Game.selectedDifficulty = Difficulty.HARD;
         });
-        buttonExit.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                System.exit(0);
-            }
-        });
+        buttonExit.addActionListener(actionEvent -> System.exit(0));
         add(buttonEasy);
         buttonMedium.setVisible(false);
         buttonEasy.setVisible(false);
