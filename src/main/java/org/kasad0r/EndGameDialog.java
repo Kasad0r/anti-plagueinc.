@@ -1,5 +1,6 @@
 package org.kasad0r;
 
+import com.sun.tools.javac.Main;
 import org.kasad0r.domain.Score;
 
 import javax.swing.*;
@@ -32,7 +33,8 @@ public class EndGameDialog extends JDialog {
         buttonOK.setMnemonic(KeyEvent.VK_ENTER);
         buttonOK.addActionListener(e -> {
                     Score score = new Score();
-                    if (textField.getText() != null && !textField.getText().isEmpty() || (textField != null && Objects.equals(textField.getText(), "Name")))
+                    if (textField.getText() != null && !textField.getText().isEmpty() ||
+                            (textField != null && Objects.equals(textField.getText().trim(), "Name")))
                         score.name = textField.getText();
                     else
                         score.name = "unknown_user" + new Random().nextInt(10000);
@@ -40,7 +42,7 @@ public class EndGameDialog extends JDialog {
                     score.scores = scores;
                     score.difficulty = Game.selectedDifficulty;
                     Starter.scoresController.addNew(score);
-                    System.exit(0);
+                    Application.starter.start();
                 }
         );
 

@@ -85,8 +85,6 @@ public class Starter extends JPanel implements Runnable {
         KeyboardFocusManager kfm = KeyboardFocusManager.getCurrentKeyboardFocusManager();
         kfm.addKeyEventDispatcher(e -> {
             KeyStroke keyStroke = KeyStroke.getKeyStrokeForEvent(e);
-            System.out.println(keyStroke);
-            System.out.println(exit);
             if (exit.equals(keyStroke)) {
                 EpidemicController.clean();
                 running = false;
